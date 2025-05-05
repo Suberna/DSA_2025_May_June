@@ -1,0 +1,84 @@
+
+🔧 Bitwise Operators in Java
+
+Bitwise operators work **on bits (binary digits)** of integers. They compare or manipulate individual bits of numbers.
+
+Here are the main bitwise operators:
+
+| Operator | Name                 | Description                                    |                                |
+| -------- | -------------------- | ---------------------------------------------- | ------------------------------ |
+| `&`      | AND                  | 1 if **both** bits are 1                       |                                |
+| \`       | \`                   | OR                                             | 1 if **at least one** bit is 1 |
+| `^`      | XOR (exclusive OR)   | 1 if **only one** bit is 1                     |                                |
+| `~`      | NOT (complement)     | Flips all bits (1 becomes 0, 0 becomes 1)      |                                |
+| `<<`     | Left shift           | Shifts bits to the left (adds 0s on right)     |                                |
+| `>>`     | Right shift          | Shifts bits to the right (keeps sign)          |                                |
+| `>>>`    | Unsigned right shift | Shifts right, fills left with 0s (no sign bit) |                                |
+
+---
+
+🔍 Examples:
+
+Let’s use two numbers:
+
+```java
+int a = 5;   // binary: 0101
+int b = 3;   // binary: 0011
+```
+
+1. AND (`&`)
+
+```java
+System.out.println(a & b); // 0101 & 0011 = 0001 => 1
+```
+
+2. OR (`|`)
+
+```java
+System.out.println(a | b); // 0101 | 0011 = 0111 => 7
+```
+
+3. XOR (`^`)
+
+```java
+System.out.println(a ^ b); // 0101 ^ 0011 = 0110 => 6
+```
+
+4. NOT (`~`)
+
+```java
+System.out.println(~a); // ~0101 = 1010 (in 2’s complement, this is -6)
+```
+
+5. Left Shift (`<<`)
+
+```java
+System.out.println(a << 1); // 0101 << 1 = 1010 => 10
+```
+
+6. Right Shift (`>>`)
+
+```java
+System.out.println(a >> 1); // 0101 >> 1 = 0010 => 2
+```
+
+7. Unsigned Right Shift (`>>>`)
+
+```java
+System.out.println(a >>> 1); // same as >> for positive numbers: 2
+```
+
+---
+
+✅ Use Case: XOR for Finding Unique Number
+
+As discussed earlier, XOR (`^`) is perfect for cancelling out pairs:
+
+```java
+int[] nums = {2, 3, 2};
+int result = 0;
+for (int num : nums) {
+    result ^= num;
+}
+System.out.println(result); // Output: 3
+```
