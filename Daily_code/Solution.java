@@ -11,27 +11,23 @@ Input: nums = [2,0,1]
 Output: [0,1,2]
 */
 
-public class Solution {
-    public void sortColors(int[] nums) {
-        int low = 0, mid = 0, high = nums.length - 1;
+public class MajorityElement {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        int candidate = 0;
 
-        while (mid <= high) {
-            if (nums[mid] == 0) {
-                
-                int temp = nums[low];
-                nums[low] = nums[mid];
-                nums[mid] = temp;
-                low++;
-                mid++;
-            } else if (nums[mid] == 1) {
-                mid++;
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            if (num == candidate) {
+                count++;
             } else {
-               
-                int temp = nums[mid];
-                nums[mid] = nums[high];
-                nums[high] = temp;
-                high--;
+                count--;
             }
         }
+
+        return candidate;
     }
 }
