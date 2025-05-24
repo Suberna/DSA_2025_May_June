@@ -1,0 +1,191 @@
+### ✅ **Key String Topics for Java Interviews**
+
+---
+
+### 1️⃣ **String Basics**
+
+* Immutable → can’t change after creation.
+* Stored in **String pool** (memory optimization).
+
+Example:
+
+```java
+String s1 = "hello";
+String s2 = "hello";
+System.out.println(s1 == s2);  // true → same pool object
+System.out.println(s1.equals(s2));  // true → same content
+```
+
+---
+
+### 2️⃣ **String Creation**
+
+* Literal vs `new String()`
+
+Example:
+
+```java
+String s1 = "abc";                // in pool
+String s2 = new String("abc");    // new heap object
+System.out.println(s1 == s2);     // false
+System.out.println(s1.equals(s2)); // true
+```
+
+---
+
+### 3️⃣ **String Methods**
+
+✅ Common methods:
+
+* `length()`
+* `charAt()`
+* `substring()`
+* `indexOf()`
+* `toUpperCase()`, `toLowerCase()`
+* `replace()`
+* `split()`
+* `trim()`
+
+Example:
+
+```java
+String s = " hello java ";
+System.out.println(s.trim());        // "hello java"
+System.out.println(s.substring(1,5));// "hell"
+System.out.println(s.replace("java", "world")); // " hello world "
+```
+
+---
+
+### 4️⃣ **String Comparison**
+
+* `==` → reference equality
+* `.equals()` → content equality
+* `.compareTo()` → dictionary order
+
+Example:
+
+```java
+String a = "apple";
+String b = "apple";
+String c = new String("apple");
+System.out.println(a == b);       // true
+System.out.println(a == c);       // false
+System.out.println(a.equals(c));  // true
+System.out.println(a.compareTo("banana")); // negative (a < b)
+```
+
+---
+
+### 5️⃣ **StringBuilder vs StringBuffer**
+
+* Mutable classes for editing strings.
+* StringBuilder → faster, non-thread-safe.
+* StringBuffer → thread-safe, slower.
+
+Example:
+
+```java
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World");
+System.out.println(sb.toString()); // "Hello World"
+```
+
+---
+
+### 6️⃣ **Reversing a String**
+
+Common interview task.
+
+Example:
+
+```java
+String s = "hello";
+String reversed = new StringBuilder(s).reverse().toString();
+System.out.println(reversed); // "olleh"
+```
+
+---
+
+### 7️⃣ **Check Palindrome**
+
+Example:
+
+```java
+public static boolean isPalindrome(String s) {
+    int i = 0, j = s.length() - 1;
+    while (i < j) {
+        if (s.charAt(i) != s.charAt(j)) return false;
+        i++; j--;
+    }
+    return true;
+}
+```
+
+---
+
+### 8️⃣ **Count Character Frequency**
+
+Example:
+
+```java
+Map<Character, Integer> freq = new HashMap<>();
+for (char c : s.toCharArray()) {
+    freq.put(c, freq.getOrDefault(c, 0) + 1);
+}
+```
+
+---
+
+### 9️⃣ **Remove Duplicates**
+
+Example:
+
+```java
+String s = "programming";
+StringBuilder sb = new StringBuilder();
+Set<Character> seen = new HashSet<>();
+for (char c : s.toCharArray()) {
+    if (!seen.contains(c)) {
+        seen.add(c);
+        sb.append(c);
+    }
+}
+System.out.println(sb.toString()); // "progamin"
+```
+
+---
+
+### 🔟 **Anagram Check**
+
+Example:
+
+```java
+public static boolean isAnagram(String s1, String s2) {
+    char[] a1 = s1.toCharArray();
+    char[] a2 = s2.toCharArray();
+    Arrays.sort(a1);
+    Arrays.sort(a2);
+    return Arrays.equals(a1, a2);
+}
+```
+
+---
+
+---
+
+### ✅ Summary of Topics
+
+✔ String pool & immutability
+✔ String methods
+✔ Comparisons (`==`, `.equals()`, `.compareTo()`)
+✔ StringBuilder vs StringBuffer
+✔ Reversing / Palindrome
+✔ Frequency count
+✔ Removing duplicates
+✔ Anagram check
+✔ Common patterns like `split()`, `substring()`, `replace()`
+
+---
+
+
