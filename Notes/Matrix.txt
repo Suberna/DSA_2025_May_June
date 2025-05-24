@@ -1,0 +1,299 @@
+
+
+### ✅ 1️⃣ **Matrix Declaration + Input/Output**
+
+**Key point:**
+
+* Declare matrix as `int[][] matrix = new int[rows][cols];`
+* Use nested loops to fill and print.
+
+**Example:**
+
+```java
+import java.util.Scanner;
+
+public class MatrixIO {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int rows = 2, cols = 3;
+        int[][] matrix = new int[rows][cols];
+
+        System.out.println("Enter matrix:");
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                matrix[i][j] = sc.nextInt();
+
+        System.out.println("Matrix is:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++)
+                System.out.print(matrix[i][j] + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 2️⃣ **Matrix Traversal**
+
+**Key point:**
+
+* Use nested loops: outer for rows, inner for columns.
+
+**Example:**
+
+```java
+public class MatrixTraversal {
+    public static void main(String[] args) {
+        int[][] matrix = {{1, 2}, {3, 4}};
+
+        System.out.println("Elements:");
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[0].length; j++)
+                System.out.println(matrix[i][j]);
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 3️⃣ **Matrix Transpose**
+
+**Key point:**
+
+* Swap rows ↔ columns: `transpose[j][i] = original[i][j]`.
+
+**Example:**
+
+```java
+public class MatrixTranspose {
+    public static void main(String[] args) {
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}};
+        int rows = matrix.length, cols = matrix[0].length;
+        int[][] transposed = new int[cols][rows];
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                transposed[j][i] = matrix[i][j];
+
+        System.out.println("Transposed:");
+        for (int[] row : transposed) {
+            for (int val : row)
+                System.out.print(val + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 4️⃣ **Matrix Addition**
+
+**Key point:**
+
+* Add each element: `sum[i][j] = A[i][j] + B[i][j]`.
+
+**Example:**
+
+```java
+public class MatrixAddition {
+    public static void main(String[] args) {
+        int[][] A = {{1, 2}, {3, 4}};
+        int[][] B = {{5, 6}, {7, 8}};
+        int rows = A.length, cols = A[0].length;
+        int[][] sum = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                sum[i][j] = A[i][j] + B[i][j];
+
+        System.out.println("Sum:");
+        for (int[] row : sum) {
+            for (int val : row)
+                System.out.print(val + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 5️⃣ **Matrix Multiplication**
+
+**Key point:**
+
+* Multiply: `C[i][j] += A[i][k] * B[k][j]`.
+
+**Example:**
+
+```java
+public class MatrixMultiplication {
+    public static void main(String[] args) {
+        int[][] A = {{1, 2}, {3, 4}};
+        int[][] B = {{5, 6}, {7, 8}};
+        int rows = A.length, cols = B[0].length, n = A[0].length;
+        int[][] result = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < cols; j++)
+                for (int k = 0; k < n; k++)
+                    result[i][j] += A[i][k] * B[k][j];
+
+        System.out.println("Product:");
+        for (int[] row : result) {
+            for (int val : row)
+                System.out.print(val + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 6️⃣ **Diagonal Sum**
+
+**Key point:**
+
+* Sum left diagonal `i == j` and right diagonal `i + j == n-1`.
+
+**Example:**
+
+```java
+public class DiagonalSum {
+    public static void main(String[] args) {
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int n = matrix.length;
+        int leftSum = 0, rightSum = 0;
+
+        for (int i = 0; i < n; i++) {
+            leftSum += matrix[i][i];
+            rightSum += matrix[i][n - i - 1];
+        }
+
+        System.out.println("Left Diagonal Sum: " + leftSum);
+        System.out.println("Right Diagonal Sum: " + rightSum);
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 7️⃣ **Rotate Matrix 90°**
+
+**Key point:**
+
+* Transpose + reverse rows.
+
+**Example:**
+
+```java
+public class RotateMatrix {
+    public static void rotate(int[][] matrix) {
+        int n = matrix.length;
+        // Transpose
+        for (int i = 0; i < n; i++)
+            for (int j = i; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        // Reverse rows
+        for (int i = 0; i < n; i++) {
+            int left = 0, right = n - 1;
+            while (left < right) {
+                int temp = matrix[i][left];
+                matrix[i][left] = matrix[i][right];
+                matrix[i][right] = temp;
+                left++;
+                right--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {{1, 2}, {3, 4}};
+        rotate(matrix);
+        System.out.println("Rotated:");
+        for (int[] row : matrix) {
+            for (int val : row)
+                System.out.print(val + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+---
+
+### ✅ 8️⃣ **Spiral Print**
+
+**Key point:**
+
+* Print top → right → bottom → left.
+
+**Example:**
+
+```java
+public class SpiralMatrix {
+    public static void spiralPrint(int[][] matrix) {
+        int top = 0, bottom = matrix.length - 1, left = 0, right = matrix[0].length - 1;
+
+        while (top <= bottom && left <= right) {
+            for (int i = left; i <= right; i++) System.out.print(matrix[top][i] + " ");
+            top++;
+            for (int i = top; i <= bottom; i++) System.out.print(matrix[i][right] + " ");
+            right--;
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) System.out.print(matrix[bottom][i] + " ");
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) System.out.print(matrix[i][left] + " ");
+                left++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        spiralPrint(matrix);
+    }
+}
+```
+
+---
+
+---
+
+### 📘 Summary Table
+
+| Topic          | Java Code Provided |
+| -------------- | ------------------ |
+| Input/Output   | ✅                  |
+| Traversal      | ✅                  |
+| Transpose      | ✅                  |
+| Addition       | ✅                  |
+| Multiplication | ✅                  |
+| Diagonal Sum   | ✅                  |
+| Rotate 90°     | ✅                  |
+| Spiral Print   | ✅                  |
+
+---
