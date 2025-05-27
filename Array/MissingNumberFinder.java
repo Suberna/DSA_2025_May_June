@@ -1,3 +1,4 @@
+package Array;
 /*✅ Problem Summary:
 You're given an array nums[] of length n, which contains all numbers from 0 to n, except one missing number.
 Your job is to find the missing number.

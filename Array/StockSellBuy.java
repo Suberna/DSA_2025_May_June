@@ -1,3 +1,4 @@
+package Array;
 class StockBuySell{
     public int maxProfit(int[] prices) {
         int minprices = prices[0];

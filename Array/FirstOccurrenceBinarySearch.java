@@ -6,7 +6,7 @@ If arr[mid] == k, don't stop immediately.
 Instead, store the index and keep searching the left half to check for earlier occurrence.
 This ensures we find the smallest index if duplicates exist. */
 
-package Daily_code;
+package Array;
 
 public class FirstOccurrenceBinarySearch {
 

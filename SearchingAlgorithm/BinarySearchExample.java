@@ -22,7 +22,7 @@ If arr[mid] > target → search left: high = mid - 1.
 If not found → return -1.
  */
 
-package Array;
+package SearchingAlgorithm;
 
 public class BinarySearchExample {
     // Method to perform binary search

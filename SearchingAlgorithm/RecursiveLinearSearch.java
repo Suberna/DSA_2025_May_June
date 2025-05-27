@@ -7,7 +7,7 @@ If arr[index] == target → return index.
 
 Otherwise, call the function with index + 1. */
 
-package Array;
+package SearchingAlgorithm;
 
 public class RecursiveLinearSearch {
     // Recursive method

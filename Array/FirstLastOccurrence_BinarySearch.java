@@ -1,3 +1,4 @@
+package Array;
 /*✅ Simple Logic:
 We want to find the first and last positions of a number x in a sorted array arr[] (which may contain duplicates).
 

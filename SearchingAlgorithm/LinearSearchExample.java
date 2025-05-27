@@ -17,7 +17,7 @@ If the current element equals the target → return the index.
 If you finish the loop without finding it → return -1.
  */
 
-package Array;
+package SearchingAlgorithm;
 
 public class LinearSearchExample {
     // Method to perform linear search

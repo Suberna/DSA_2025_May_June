@@ -11,7 +11,7 @@ If arr[mid] < target → search right half (mid + 1 to high).
 
 If arr[mid] > target → search left half (low to mid - 1). */
 
-package Array;
+package SearchingAlgorithm;
 
 public class RecursiveBinarySearch {
     // Recursive method

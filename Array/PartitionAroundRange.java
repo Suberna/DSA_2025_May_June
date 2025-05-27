@@ -1,3 +1,4 @@
+package Array;
 /*Input: arr[] = [1, 2, 3, 3, 4], a = 1, b = 2
 Output: true
 Explanation: One possible arrangement is: {1, 2, 3, 3, 4}. If you return a valid arrangement, output will be true. */
