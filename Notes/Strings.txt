@@ -188,4 +188,185 @@ public static boolean isAnagram(String s1, String s2) {
 
 ---
 
+### 🌟 **1️⃣ Substrings, Counting, and Searching**
+
+---
+
+#### ✅ **What is a substring?**
+
+A **substring** is just a part of a string.
+For example, in `"hello"`:
+
+* `"he"`, `"ell"`, `"lo"` are substrings.
+* It’s like cutting a word into smaller continuous parts.
+
+---
+
+#### 🔍 **Problem: Count how many times a substring appears**
+
+Example:
+In the string `"ababab"`, how many times does `"ab"` appear?
+
+👉 It appears **3 times**:
+
+* `"ab"` at positions 0–1
+* `"ab"` at positions 2–3
+* `"ab"` at positions 4–5
+
+---
+
+### ✅ **Java Code: Count Occurrences**
+
+```java
+public class SubstringCount {
+    public static int countOccurrences(String str, String sub) {
+        int count = 0;           // to keep track of how many times we find it
+        int index = 0;           // start searching from index 0
+
+        // keep searching until no more found
+        while ((index = str.indexOf(sub, index)) != -1) {
+            count++;                      // found one → increase count
+            index += sub.length();        // move index forward to avoid overlapping
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        String str = "ababab";
+        String sub = "ab";
+        System.out.println("Occurrences: " + countOccurrences(str, sub));  // Output: 3
+    }
+}
+```
+
+---
+
+### 🧠 **Logic Explanation**
+
+* `str.indexOf(sub, index)` → finds **where** the substring `sub` appears in `str`, starting from `index`.
+  It returns **-1** if not found.
+
+* Each time we find it:
+
+  * We increase the count.
+  * We move `index` forward by the length of the substring (to avoid overlapping).
+
+---
+
+### ✨ **Simple Example Walkthrough**
+
+* Input: `str = "ababab"`, `sub = "ab"`
+* Find at index 0 → count = 1 → move to index 2
+* Find at index 2 → count = 2 → move to index 4
+* Find at index 4 → count = 3 → move to index 6 (no more)
+
+✅ Final count → **3**
+
+---
+
+---
+
+### 🌟 **2️⃣ Compression Using Run Length Encoding (RLE)**
+
+---
+
+#### ✅ **What is Run Length Encoding?**
+
+It’s a simple **compression** method:
+Instead of writing `"aaabbcddd"`, we write:
+
+```
+a3b2c1d3
+```
+
+Which means:
+
+* 3 a’s → `a3`
+* 2 b’s → `b2`
+* 1 c  → `c1`
+* 3 d’s → `d3`
+
+---
+
+### ✅ **Java Code: RLE Compression**
+
+```java
+public class RunLengthEncoding {
+    public static String compress(String s) {
+        StringBuilder result = new StringBuilder();  // to build compressed string
+        int count = 1;  // start count at 1
+
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                count++;  // same character → increase count
+            } else {
+                result.append(s.charAt(i - 1)).append(count);  // add previous character + count
+                count = 1;  // reset count for new character
+            }
+        }
+
+        // Add the last character group
+        result.append(s.charAt(s.length() - 1)).append(count);
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String input = "aaabbcddd";
+        String compressed = compress(input);
+        System.out.println("Compressed: " + compressed);  // Output: a3b2c1d3
+    }
+}
+```
+
+---
+
+### 🧠 **Logic Explanation**
+
+* We **loop** through the string.
+* If the current character is the **same** as the previous one, we increase the count.
+* If the current character is **different**:
+
+  * We **add** the previous character + count to the result.
+  * Reset the count to 1.
+* After the loop, we **add the last character group**.
+
+---
+
+### ✨ **Simple Example Walkthrough**
+
+Input: `"aaabbcddd"`
+
+| i | Current | Previous | Count      | Result So Far |
+| - | ------- | -------- | ---------- | ------------- |
+| 1 | a       | a        | 2          |               |
+| 2 | a       | a        | 3          |               |
+| 3 | b       | a        | → add `a3` | a3            |
+| 4 | b       | b        | 2          | a3            |
+| 5 | c       | b        | → add `b2` | a3b2          |
+| 6 | d       | c        | → add `c1` | a3b2c1        |
+| 7 | d       | d        | 2          | a3b2c1        |
+| 8 | d       | d        | 3          | a3b2c1        |
+
+✅ After loop → add `d3`
+
+Final Output → `a3b2c1d3`
+
+---
+
+---
+
+### 🔧 **Functions Used**
+
+| Function/Tool      | What It Does                                   |
+| ------------------ | ---------------------------------------------- |
+| `StringBuilder`    | Efficiently builds strings without new objects |
+| `s.charAt(i)`      | Gets the character at index `i`                |
+| `.append()`        | Adds characters/numbers to the result string   |
+| `str.indexOf(sub)` | Finds where a substring appears                |
+
+---
+
+
 
