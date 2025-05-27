@@ -368,5 +368,139 @@ Final Output → `a3b2c1d3`
 
 ---
 
+## 🌟 **Topic 1: Frequency Maps (Character Count)**
+
+---
+
+### ✅ **What is it?**
+
+We want to **count how many times** each character appears in a string.
+
+Example:
+
+```
+Input: "hello"
+Counts: h → 1, e → 1, l → 2, o → 1
+```
+
+---
+
+### 🧠 **Logic**
+
+* Use a **map** or an **array** to store counts.
+* For each character:
+
+  * Increase its count.
+
+---
+
+### 📦 **Java Code (using int array for lowercase a-z)**
+
+```java
+public class CharacterCount {
+    public static void main(String[] args) {
+        String str = "hello";
+        int[] count = new int[26];  // only for a-z
+
+        for (char c : str.toCharArray()) {
+            count[c - 'a']++;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (count[i] > 0) {
+                System.out.println((char)(i + 'a') + " → " + count[i]);
+            }
+        }
+    }
+}
+```
+
+---
+
+### 🔍 **Explanation**
+
+* `count[c - 'a']` → maps 'a' to index 0, 'b' to 1, ..., 'z' to 25.
+* Loop through the string, increase count.
+* Finally, print only the nonzero counts.
+
+---
+
+---
+
+## 🌟 **Topic 2: ASCII Tricks (Case Toggle a ↔ A)**
+
+---
+
+### ✅ **What is it?**
+
+We want to **change lowercase to uppercase** or **uppercase to lowercase**
+Example:
+
+```
+Input: "HeLLo"
+Output: "hEllO"
+```
+
+---
+
+### 🧠 **Logic**
+
+We use the fact that:
+
+* In ASCII, `'A'` (65) and `'a'` (97) differ by **32**.
+* So:
+
+  * To toggle case: `c ^ 32` (XOR with 32).
+  * To uppercase: if `'a' ≤ c ≤ 'z'`, `c - 32`.
+  * To lowercase: if `'A' ≤ c ≤ 'Z'`, `c + 32`.
+
+---
+
+### 📦 **Java Code (Toggle Case)**
+
+```java
+public class CaseToggle {
+    public static void main(String[] args) {
+        String str = "HeLLo";
+        StringBuilder toggled = new StringBuilder();
+
+        for (char c : str.toCharArray()) {
+            if (c >= 'A' && c <= 'Z') {
+                toggled.append((char)(c + 32));  // uppercase to lowercase
+            } else if (c >= 'a' && c <= 'z') {
+                toggled.append((char)(c - 32));  // lowercase to uppercase
+            } else {
+                toggled.append(c);  // leave other chars as-is
+            }
+        }
+
+        System.out.println("Toggled: " + toggled.toString());
+    }
+}
+```
+
+---
+
+### 🔍 **Explanation**
+
+* `'A'` to `'Z'`: ASCII 65–90 → add 32 → `'a'`–`'z'`
+* `'a'` to `'z'`: ASCII 97–122 → subtract 32 → `'A'`–`'Z'`
+* We check each character, transform if it’s a letter.
+
+---
+
+---
+
+### ✅ **Summary Table**
+
+| Task                  | Trick                                        |
+| --------------------- | -------------------------------------------- |
+| Count letters a-z     | `count[c - 'a']++`                           |
+| Toggle case           | `c ^ 32` (fast), or add/subtract 32 manually |
+| Uppercase → lowercase | if `'A' ≤ c ≤ 'Z'`, `c + 32`                 |
+| Lowercase → uppercase | if `'a' ≤ c ≤ 'z'`, `c - 32`                 |
+
+---
+
 
 
