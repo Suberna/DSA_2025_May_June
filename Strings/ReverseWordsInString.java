@@ -1,3 +1,4 @@
+package Strings;
 
 public class ReverseWordsInString {
     public String reverseWords(String s) {
@@ -28,3 +29,4 @@ public class ReverseWordsInString {
         System.out.println(solution.reverseWords("a good   example"));     // Output: "example good a"
     }
 }
+

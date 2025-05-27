@@ -1,3 +1,4 @@
+package Strings;
 public class LongestCommonPrefix {
 
     public static String longestCommonPrefix(String[] strs) {
@@ -27,3 +28,4 @@ public class LongestCommonPrefix {
         System.out.println(longestCommonPrefix(strs2));  // Output: ""
     }
 }
+

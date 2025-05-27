@@ -1,3 +1,4 @@
+package Strings;
 public class ValidAnagram {
     public static boolean isAnagram(String s, String t) {
         // Step 1: Check if lengths are different
