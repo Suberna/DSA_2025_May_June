@@ -1,0 +1,290 @@
+
+## ✅ **🔹 1. Array Basics**
+
+### 🔸 What is an Array?
+
+An array is a fixed-size collection of elements **of the same data type**, stored **contiguously in memory**.
+
+```java
+int[] numbers = {10, 20, 30};
+```
+
+---
+
+### 🔸 Declaration & Initialization
+
+#### Separate steps:
+
+```java
+int[] arr;           // Declaration
+arr = new int[5];    // Initialization (default 0 values)
+```
+
+#### Combined:
+
+```java
+int[] arr = new int[5];             // All values are 0
+int[] values = {1, 2, 3, 4};        // Initialized directly
+```
+
+---
+
+### 🔸 Default Values
+
+| Type             | Default Value |
+| ---------------- | ------------- |
+| int              | 0             |
+| double           | 0.0           |
+| boolean          | false         |
+| String / Objects | null          |
+
+---
+
+### 🔸 Array Size & Fixed Nature
+
+* Once created, array size **cannot be changed**.
+* Trying to access `arr[arr.length]` gives `ArrayIndexOutOfBoundsException`.
+
+---
+
+### 🔸 Memory Allocation (Heap)
+
+* Arrays are objects in Java → stored in **heap memory**.
+* Even `int[]` is treated as an object with a `.length` property (not method!).
+
+---
+
+## ✅ **🔹 2. Array Traversal**
+
+### 🔸 Using `for` loop
+
+```java
+int[] arr = {10, 20, 30};
+for (int i = 0; i < arr.length; i++) {
+    System.out.println(arr[i]);
+}
+```
+
+---
+
+### 🔸 Using `for-each` loop
+
+```java
+for (int value : arr) {
+    System.out.println(value);
+}
+```
+
+---
+
+### 🔸 Using `while` loop
+
+```java
+int i = 0;
+while (i < arr.length) {
+    System.out.println(arr[i]);
+    i++;
+}
+```
+
+---
+
+## ✅ **🔹 3. Array Operations**
+
+---
+
+### 🔸 Insertion (at index)
+
+```java
+int[] oldArr = {10, 20, 30};
+int index = 1;
+int value = 15;
+
+int[] newArr = new int[oldArr.length + 1];
+
+for (int i = 0, j = 0; i < newArr.length; i++) {
+    if (i == index) {
+        newArr[i] = value;
+    } else {
+        newArr[i] = oldArr[j++];
+    }
+}
+```
+
+---
+
+### 🔸 Deletion (from index)
+
+```java
+int[] oldArr = {10, 20, 30, 40};
+int index = 2;
+
+int[] newArr = new int[oldArr.length - 1];
+
+for (int i = 0, j = 0; i < oldArr.length; i++) {
+    if (i != index) {
+        newArr[j++] = oldArr[i];
+    }
+}
+```
+
+---
+
+### 🔸 Reversing
+
+```java
+int[] arr = {10, 20, 30, 40};
+int start = 0, end = arr.length - 1;
+
+while (start < end) {
+    int temp = arr[start];
+    arr[start] = arr[end];
+    arr[end] = temp;
+    start++;
+    end--;
+}
+```
+
+---
+
+### 🔸 Searching
+
+#### Linear Search:
+
+```java
+for (int i = 0; i < arr.length; i++) {
+    if (arr[i] == key) {
+        return i;
+    }
+}
+```
+
+#### Binary Search (sorted arrays only):
+
+```java
+int left = 0, right = arr.length - 1;
+while (left <= right) {
+    int mid = (left + right) / 2;
+    if (arr[mid] == key) return mid;
+    else if (key < arr[mid]) right = mid - 1;
+    else left = mid + 1;
+}
+```
+
+---
+
+## ✅ **🔹 4. Array Manipulations**
+
+---
+
+### 🔸 Sorting (`Arrays.sort()`)
+
+```java
+import java.util.Arrays;
+int[] arr = {5, 2, 9, 1};
+Arrays.sort(arr);  // now arr = {1, 2, 5, 9}
+```
+
+---
+
+### 🔸 Finding Min/Max
+
+```java
+int min = arr[0], max = arr[0];
+for (int i = 1; i < arr.length; i++) {
+    if (arr[i] < min) min = arr[i];
+    if (arr[i] > max) max = arr[i];
+}
+```
+
+---
+
+### 🔸 Summing All Elements
+
+```java
+int sum = 0;
+for (int val : arr) {
+    sum += val;
+}
+```
+
+---
+
+### 🔸 Copying Arrays
+
+```java
+int[] copy1 = Arrays.copyOf(arr, arr.length);
+int[] copy2 = new int[arr.length];
+System.arraycopy(arr, 0, copy2, 0, arr.length);
+```
+
+---
+
+### 🔸 Merging Two Arrays
+
+```java
+int[] a = {1, 2}, b = {3, 4};
+int[] merged = new int[a.length + b.length];
+
+for (int i = 0; i < a.length; i++) merged[i] = a[i];
+for (int i = 0; i < b.length; i++) merged[a.length + i] = b[i];
+```
+
+---
+
+## ✅ **🔹 5. Advanced Topics**
+
+---
+
+### 🔸 Multidimensional Arrays
+
+```java
+int[][] matrix = {
+    {1, 2},
+    {3, 4}
+};
+System.out.println(matrix[0][1]);  // Output: 2
+```
+
+---
+
+### 🔸 Jagged Arrays
+
+```java
+int[][] jagged = new int[2][];
+jagged[0] = new int[]{1, 2};
+jagged[1] = new int[]{3, 4, 5};  // different lengths
+```
+
+---
+
+### 🔸 Passing Arrays to Methods
+
+```java
+void printArray(int[] arr) {
+    for (int val : arr) System.out.println(val);
+}
+```
+
+---
+
+### 🔸 Returning Arrays from Methods
+
+```java
+int[] getArray() {
+    return new int[]{10, 20, 30};
+}
+```
+
+---
+
+### 🔸 Using `java.util.Arrays` Methods
+
+```java
+Arrays.sort(arr);
+Arrays.toString(arr);
+Arrays.copyOf(arr, newLength);
+Arrays.equals(arr1, arr2);
+```
+
+---
